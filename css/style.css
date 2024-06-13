@@ -1,0 +1,17 @@
+::selection {
+  background: var(--bs-secondary);
+}
+body {
+  background: url(../images/noise.png) 50px 50px;
+}
+.form-floating > textarea.form-control {
+  min-height: 150px;
+  resize: none;
+}
+.form-select-lg {
+  font-size: 1rem;
+}
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+}
