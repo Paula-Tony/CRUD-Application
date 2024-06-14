@@ -150,16 +150,28 @@ function updateProduct() {
     products[currentIndex].category = productCategoryInput.value;
     products[currentIndex].description = productDescriptionInput.value;
     products[currentIndex].price = productPriceInput.value;
-    if (productImageInput.files.length == 1)
-      products[
-        currentIndex
-      ].image = `images/${productImageInput.files[0].name}`;
-    saveProducts(products);
-    productsList.innerHTML = "";
-    displayProducts();
-    resetForm();
-    updateProductBtn.classList.add("d-none");
-    addProductBtn.classList.remove("d-none");
+
+    if (productImageInput.files.length == 1) {
+      let file = productImageInput.files[0];
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        products[currentIndex].image = event.target.result;
+        saveProducts(products);
+        productsList.innerHTML = "";
+        displayProducts();
+        resetForm();
+        updateProductBtn.classList.add("d-none");
+        addProductBtn.classList.remove("d-none");
+      };
+      reader.readAsDataURL(file);
+    } else {
+      saveProducts(products);
+      productsList.innerHTML = "";
+      displayProducts();
+      resetForm();
+      updateProductBtn.classList.add("d-none");
+      addProductBtn.classList.remove("d-none");
+    }
   }
 }
 
